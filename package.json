@@ -1,6 +1,6 @@
 {
   "name": "nestpay",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Turkish Banks Payment Gateway",
   "main": "dist/index.js",
   "scripts": {

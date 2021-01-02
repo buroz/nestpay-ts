@@ -1,5 +1,5 @@
 const express = require("express");
-const NestPay = require("../dist");
+const { NestPay } = require("../dist");
 
 const app = express();
 

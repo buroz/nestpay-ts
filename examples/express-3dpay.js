@@ -1,7 +1,7 @@
 const express = require("express");
 const https = require("https");
 const url = require("url");
-const NestPay = require("../dist");
+const { NestPay } = require("../dist");
 
 const app = express();
 
