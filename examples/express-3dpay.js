@@ -1,14 +1,15 @@
-import * as express from "express";
-import * as https from "https";
-import * as url from "url";
-import * as NestPay from "../dist";
+const express = require("express");
+const https = require("https");
+const url = require("url");
+const NestPay = require("../dist");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/pay", (request: any, response: any) => {
+app.use("/pay", (req, res) => {
   const nestpay = new NestPay("isbank");
+
   const endpoint = nestpay.Endpoint(true); // if Nonsecure payment set this false
   const banksUrl = url.parse(endpoint);
   const formStr = nestpay.SecurePay({
@@ -29,7 +30,7 @@ app.use("/pay", (request: any, response: any) => {
     language: "TR",
   });
 
-  const req = https.request(
+  const paymentRequest = https.request(
     {
       hostname: banksUrl.hostname,
       port: 443,
@@ -40,17 +41,17 @@ app.use("/pay", (request: any, response: any) => {
         "Content-Lenght": Buffer.from(formStr).length,
       },
     },
-    (res) => res.pipe(response, { end: true })
+    (paymentResponse) => paymentResponse.pipe(res, { end: true })
   );
-  req.write(formStr);
-  req.end();
+  paymentRequest.write(formStr);
+  paymentRequest.end();
 });
 
-app.use("/fail", (req: any, res: any) => {
+app.use("/fail", (req, res) => {
   console.log(req.body);
 });
 
-app.use("/ok", (req: any, res: any) => {
+app.use("/ok", (req, res) => {
   console.log(req.body);
 });
 

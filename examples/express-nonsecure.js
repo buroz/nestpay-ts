@@ -1,11 +1,11 @@
-import * as express from "express";
-import * as NestPay from "../dist";
+const express = require("express");
+const NestPay = require("../dist");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/pay", async (req: any, res: any) => {
+app.use("/pay", async (req, res) => {
   const nestpay = new NestPay("isbank");
   try {
     const paymentResponse = await nestpay.NonSecurePay({

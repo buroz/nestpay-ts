@@ -1,4 +1,6 @@
 import { NestPay } from "./nestpay";
-export * from "./_interfaces";
-export * from "./_constants";
+
+export * from "./interfaces";
+export * from "./constants";
+
 export default NestPay;

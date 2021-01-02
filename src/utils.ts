@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import qs from "querystring";
 import XmlParser, { j2xParser } from "fast-xml-parser";
-import { HashParameters } from "_interfaces";
+import { HashParameters } from "./interfaces";
 
 const parser = new j2xParser({
   ignoreAttributes: true,

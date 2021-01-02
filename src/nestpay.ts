@@ -1,12 +1,12 @@
 import https from "https";
 import url from "url";
 
-import { BankType, HashParameters, SecurePayment, CurrencyType, NonSecurePayment } from "./_interfaces";
-import { SecureEndPoint, NonSecureEndPoint, Currencies } from "./_constants";
-import { GenerateHash, CreateFormString, Obj2XML, XML2Json } from "./_utils";
+import { BankType, HashParameters, SecurePayment, CurrencyType, NonSecurePayment } from "./interfaces";
+import { SecureEndPoints, NonSecureEndPoints, Currencies } from "./constants";
+import { GenerateHash, CreateFormString, Obj2XML, XML2Json } from "./utils";
 
-export const RequestXMLRoot: string = "CC5Request";
-export const ResponseXMLRoot: string = "CC5Response";
+const RequestXMLRoot: string = "CC5Request";
+const ResponseXMLRoot: string = "CC5Response";
 
 export class NestPay {
   constructor(private bank: BankType | string) {}
@@ -16,7 +16,7 @@ export class NestPay {
   }
 
   public Endpoint(secure: boolean): string {
-    return secure ? SecureEndPoint.get(this.bank) : NonSecureEndPoint.get(this.bank);
+    return secure ? SecureEndPoints.get(this.bank) : NonSecureEndPoints.get(this.bank);
   }
 
   private CreateFormString(obj: Record<string | number, string | number>): string {
@@ -128,9 +128,9 @@ export class NestPay {
           });
         }
       );
+      req.on("error", (err) => reject(err));
       req.write(xml);
       req.end();
-      req.on("error", (err) => reject(err));
     });
   }
 }

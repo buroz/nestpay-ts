@@ -1,20 +1,25 @@
 {
-  "name": "nestpayts",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "nestpay",
+  "version": "1.0.2",
+  "description": "Turkish Banks Payment Gateway",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "repository": "https://github.com/buroz/nestpay-ts",
+  "keywords": [
+    "turkish banks",
+    "payment",
+    "virtual pos"
+  ],
+  "author": "buroz",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "*",
-    "typescript": "3.8.3"
+    "typescript": "*"
   },
   "dependencies": {
-    "fast-xml-parser": "3.16.0",
-    "tslib": "1.11.1"
+    "fast-xml-parser": "*",
+    "tslib": "*"
   }
 }
